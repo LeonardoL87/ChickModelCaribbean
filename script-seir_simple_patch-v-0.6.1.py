@@ -488,15 +488,15 @@ def f_diff_eqs(Y0, t, epi_classes, M, beta, sigma, gamma):
         E_minus = M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
 
         # threshold to simulate discretization:
-        if E_plus < 1E-2:
+        if E_plus < 1E-5:
             E_plus = 0.0
-        ##E_plus = 0.0
-        print ""
-        print ""
-        print ""
-        print ("dE = ",E_plus)
-        print ""
-        print ""
+        ###E_plus = 0.0
+        #print ""
+        #print ""
+        #print ""
+        #print ("dE = ",E_plus)
+        #print ""
+        #print ""
 
         dE[i] = dE[i] \
             #- M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
@@ -535,7 +535,7 @@ def f_diff_eqs(Y0, t, epi_classes, M, beta, sigma, gamma):
             + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
 
 
-    f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    f = np.ceil([dS, dE, dI, dR, (dS+dE+dI+dR)])
 
     # put f in the right order:
     f_temp = list()
