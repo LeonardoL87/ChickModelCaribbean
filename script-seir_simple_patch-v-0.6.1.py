@@ -537,7 +537,10 @@ def f_diff_eqs(Y0, t, epi_classes, M, beta, sigma, gamma):
 
     #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
     np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
-
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
     # put f in the right order:
     f_temp = list()
     patches = M.shape[0]  #number of patches
