@@ -8,7 +8,6 @@
 # by Keeling & Rohani                                            #
 #	                                							 #
 # It is the SEIR epidemic with no births nor deaths.             #l
-# Note we no-longer explicitly model the recovered class. 	     #
 ##################################################################
 ########################################################################
 # Modified by carlos j dommar - carlos.dommar@gmail.com                #
