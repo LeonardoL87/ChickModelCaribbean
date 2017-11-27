@@ -17,18 +17,18 @@ start = time.time()
 #############################################
 # all airports in the openflights.org dataset-
 ## use for the Lenovo laptop:
-# airports = pd.read_csv('/home/carlos/projects/fpol/data/airports.csv')
+# airports = pd.read_csv('./data/airports.csv')
 
 ## use for Ingold:
-airports = pd.read_csv('~/projects/fpol/data/airports.csv')
+airports = pd.read_csv('./data/airports.csv')
 
 # Load the outcome from the albert's script 'connection_matrix.py' (report path)
 ## use the following path for the Lenovo laptop:
 #my_airports_df = \
-#    pd.read_csv('/home/carlos/projects/chik-caribbean/non-in-repo/data00/island_connections_caribbean_3.csv')
+#    pd.read_csv('./data/island_connections_caribbean_3.csv')
 ## use the following pathe for Ingold:
 my_airports_df = \
-    pd.read_csv('~/projects/chik-caribbean/non-in-repo/data00/island_connections_caribbean_3.csv')
+    pd.read_csv('./data/island_connections_caribbean_3.csv')
 # cleaning off some unnecesary header off the dataframe
 my_airports_df = my_airports_df.drop('Unnamed: 0',1)
 my_airports_df.index = my_airports_df.columns
@@ -518,11 +518,11 @@ def diff_eqs_2(Y0, t, M2):
             - M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
             + (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
 
-    #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
     # Leonardo's suggestion:
     # It should wor because rint threshold to 1. values >= to .5 and to 0. values <.5
     #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
-    f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
+    #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
 
 
 
