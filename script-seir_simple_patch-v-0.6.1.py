@@ -534,8 +534,10 @@ def f_diff_eqs(Y0, t, epi_classes, M, beta, sigma, gamma):
             + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
 
 
-    #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
-    np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
+    #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
+    f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
+    print(f)
     ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
