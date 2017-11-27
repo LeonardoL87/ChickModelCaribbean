@@ -8,7 +8,6 @@
 # by Keeling & Rohani                                            #
 #	                                							 #
 # It is the SEIR epidemic with no births nor deaths.             #l
-# Note we no-longer explicitly model the recovered class. 	     #
 ##################################################################
 ########################################################################
 # Modified by carlos j dommar - carlos.dommar@gmail.com                #
@@ -49,9 +48,9 @@
 #   - SCENARIOS:                                                       #
 #       a) randomize the conections Saint Martin                       #
 #          (first island infected) and loop for several realizations.  #
-#          The goal is to check whether the pattern of sequnces is hold
+#          The goal is to check whether the pattern of sequnces is hold#
 #                                                                      #
-#       b) Random seeding of the diseases in any island  while keeping
+#       b) Random seeding of the diseases in any island  while keeping #
 #          the topology and                                            #
 #       several realizations - check whether the sequential            #
 #       pattern holds                                                  #
@@ -62,9 +61,11 @@
 #       d) Random network with the same number of nodes and links of   #
 #        the obeserved one.                                            #
 #                                                                      #
-#   version 0.6.1:
-#       a) Cleaning up existing code and refactoring funcions
+#   version 0.6.1:                                                     #
+#       a) Cleaning up existing code and refactoring funcions          #
 #                                                                      #
+#   version 0.6.2:                                                     #
+#        PENDING TO WRITE DOCMENTATION                                 #
 ########################################################################
 
 ########################################################################

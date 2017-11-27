@@ -8,7 +8,6 @@
 # by Keeling & Rohani                                            #
 #	                                							 #
 # It is the SEIR epidemic with no births nor deaths.             #l
-# Note we no-longer explicitly model the recovered class. 	     #
 ##################################################################
 ########################################################################
 # Modified by carlos j dommar - carlos.dommar@gmail.com                #
@@ -537,6 +536,11 @@ def f_diff_eqs(Y0, t, epi_classes, M, beta, sigma, gamma):
 
     #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
     np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
