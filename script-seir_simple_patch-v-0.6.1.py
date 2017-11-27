@@ -542,6 +542,11 @@ def f_diff_eqs(Y0, t, epi_classes, M, beta, sigma, gamma):
     ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
     ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
+    ### NUEVA VERSION PRUEBA ############
     # put f in the right order:
     f_temp = list()
     patches = M.shape[0]  #number of patches
