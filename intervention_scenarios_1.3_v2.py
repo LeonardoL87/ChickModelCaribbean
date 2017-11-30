@@ -461,6 +461,7 @@ def diff_eqs(Y0, t, M):
             + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
 
     f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
 
     # put f in the right order:
     f_temp = list()
@@ -518,7 +519,8 @@ def diff_eqs_2(Y0, t, M2):
             - M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
             + (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
 
-    f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
     # Leonardo's suggestion:
     # It should wor because rint threshold to 1. values >= to .5 and to 0. values <.5
     #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
