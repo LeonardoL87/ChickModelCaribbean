@@ -21,7 +21,12 @@ start = time.time()
 
 ## use for Ingold:
 airports = pd.read_csv('./data/airports.csv')
-
+########### SCHEISSE TEST ##############
+########### 4444444444444 ##############
+########### 4444444444444 ##############
+########### 4444444444444 ##############
+########### 4444444444444 ##############
+########### 4444444444444 ##############
 # Load the outcome from the albert's script 'connection_matrix.py' (report path)
 ## use the following path for the Lenovo laptop:
 #my_airports_df = \
