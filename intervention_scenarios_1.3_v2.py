@@ -545,8 +545,8 @@ start = time.time()
 # I run over a vector of differnte intervention dates (times)
 intervention_dates = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
 intervention_dates = [5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
-intervention_dates = [5, 40, 100]
-intervention_dates = [40, 100]
+#intervention_dates = [5, 40, 100]
+#intervention_dates = [40, 100]
 
 #M = M*0.5 ## it seems it doesn not make  any effect here!!!
 M2 = M * 0.0
