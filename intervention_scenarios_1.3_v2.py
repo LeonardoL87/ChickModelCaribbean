@@ -1,3 +1,76 @@
+
+
+#!/usr/bin/env python
+# SEIR without demography (no vital dynamics)
+########################################################################
+# INTERVENTION SCRIPTS                                                 #
+# INTERVENTION SCRIPTS                                                 #
+# INTERVENTION SCRIPTS                                                 #
+########################################################################
+# This is the SEIR epidemic with no births nor deaths.                 #
+# coupled to s network model tath represents mobility of human hosts   #
+# within a geographical domain (the Caribbean)                         #
+########################################################################
+########################################################################
+# Modified by carlos j dommar - carlos.dommar@gmail.com                #
+# to adapt it to a simple 2-patch model                                #
+# - modification log                                                   #
+#                                                                      #
+# - pending udate info for version 0.6                                 #
+#                                                                      #
+# - v. 0.4.7:                                                          #
+#       * I check that densities are used instread of absolut          #
+#       population sizes                                               #
+#       * Implemente a Block Random Network Model to model the         #
+#       political structure in the network                             #
+#       * Once parameterized the BRNM then simulate epidemics on reali #
+#       -zations drwan form the parameterized and validated BRNM       #
+#       * Draw conclusions and write the paper.                        #
+#                                                                      #
+# - I use similar parameters as used in the notebook                   #
+# simple_metapopulation_SEIR_plus_mosquito_v0.0.1 in order to test     #
+# real value parameters for chikungunya                                #
+# - In this version I test the three patches model                     #
+# - In this version I use the real conection data from openflights.org #
+# to build up the mobility matrix 'M', I use real population sizes,    #
+# of the Caribbena region of interest for the CHIKV outbreak           #
+# - This is the same as the version 0.4 but a bit more clean           #
+# - in this version I include a new node: Saint Martin and use the     #
+# information given by the airport http://www.saintmartin-airport.com  #
+# to update the conection mobility matrix. This should be important    #
+# because the first reported local transmission in the Caribbean was   #
+# reported precisely in Sanint Martin                                  #
+# version 0.4.5:                                                       #
+#   - add Tycho data for comparison and calibration of the theoretical #
+#   - MODEL TWEAKER: this is a no-frills code that produces only the   #
+#   theoretical aggragated curve and it compares against the (Tycho)   #
+#   observed data. The goal is to have a clear nd simple code to       #
+#   calibrate the theoretcial model with the observations by tweaking  #
+#   the parameters                                                     #
+#   - SCENARIOS:                                                       #
+#       a) randomize the conections Saint Martin                       #
+#          (first island infected) and loop for several realizations.  #
+#          The goal is to check whether the pattern of sequnces is hold
+#                                                                      #
+#       b) Random seeding of the diseases in any island  while keeping
+#          the topology and                                            #
+#       several realizations - check whether the sequential            #
+#       pattern holds                                                  #
+#                                                                      #
+#       c) connect Saint Martin with all of the other islands (Xavi's  #
+#       idea -?)                                                       #
+#                                                                      #
+#       d) Random network with the same number of nodes and links of   #
+#        the obeserved one.                                            #
+#                                                                      #
+#   version 0.6.1:                                                     #
+#       a) Cleaning up existing code and refactoring funcions          #
+#                                                                      #
+########################################################################
+
+########################################################################
+
+__author__ = """carlos j dommar ~ carlos.dommar_at_isglobal.org"""
 # Preambule:
 import scipy.integrate as spi
 import numpy as np
@@ -519,8 +592,8 @@ def diff_eqs_2(Y0, t, M2):
             - M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
             + (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
 
-    #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
-    f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
+    f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
     # Leonardo's suggestion:
     # It should wor because rint threshold to 1. values >= to .5 and to 0. values <.5
     #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
