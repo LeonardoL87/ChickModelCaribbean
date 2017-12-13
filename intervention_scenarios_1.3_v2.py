@@ -553,7 +553,7 @@ def diff_eqs(Y0, t, M):
 #################################################################################
 #################################################################################
 # THE EQUATIONS V.2.:
-def diff_eqs_2(Y0, t, M2):
+def diff_eqs_2(Y0, t, M):
     # I need to keep track explicitely on the total population sizes
     S = Y0[0:leap:epi_classes]
     E = Y0[1:leap+1:epi_classes]
@@ -571,26 +571,26 @@ def diff_eqs_2(Y0, t, M2):
     # For all dS's:
     for i in range(0,len(dS)):
         dS[i] = dS[i] \
-            - M2[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M2[:,i]))*S/(S+E+I+R)).sum()
+            - M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
+            + (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
 
     # For all dE's:
     for i in range(0,len(dE)):
         dE[i] = dE[i] \
-            - M2[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M2[:,i]))*E/(S+E+I+R)).sum()
+            - M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
+            + (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
 
     # For all dI's:
     for i in range(0,len(dI)):
         dI[i] = dI[i] \
-            - M2[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M2[:,i]))*I/(S+E+I+R)).sum()
+            - M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
+            + (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
 
     # For all dR's
     for i in range(0,len(dR)):
         dR[i] = dR[i] \
-            - M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
+            - M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
+            + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
 
     f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
     #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
@@ -624,7 +624,7 @@ intervention_dates = [5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
 intervention_dates = [40, 100]
 
 #M = M*0.5 ## it seems it doesn not make  any effect here!!!
-M2 = M * 0.0
+#M2 = M * 0.0
 interventions = [M, M*.9, M*.8, M*.7, M*.6,  M*.5, M*.4, M*.3, M*.2, M*.1, M*.0]
 
 solution_list = [] # each element represents an intervention time from the list
