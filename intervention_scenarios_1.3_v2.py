@@ -21,7 +21,10 @@ start = time.time()
 
 ## use for Ingold:
 airports = pd.read_csv('./data/airports.csv')
+<<<<<<< HEAD
 
+=======
+>>>>>>> 537cdff41eb60754dbf651d85f25dc9696835764
 # Load the outcome from the albert's script 'connection_matrix.py' (report path)
 ## use the following path for the Lenovo laptop:
 #my_airports_df = \
@@ -331,7 +334,8 @@ patches = nx.number_of_nodes(H)
 leap = epi_classes * (patches - 1) + 1  # patches = is the number of patches
 ND=365.0/1.      # number of days
 ND=45.0*7        # number weeks times number of days
-TS=.10           # time step
+#TS=.10           # time step
+TS=1.0           # time step
 
 
 
@@ -363,8 +367,8 @@ patches = nx.number_of_nodes(H)
 leap = epi_classes * (patches - 1) + 1  # patches = is the number of patches
 ND=365.0/1.      # number of days
 ND=45.0*7        # number weeks times number of days
-TS=.10           # time step
-
+#TS=.10           # time step
+TS=1.0           # time step
 
 # Mobility matrix:
 # Convert aggregated by countries graph 'H' into a M numpy ndarray for speed:
@@ -461,6 +465,7 @@ def diff_eqs(Y0, t, M):
             + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
 
     f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
 
     # put f in the right order:
     f_temp = list()
@@ -518,7 +523,12 @@ def diff_eqs_2(Y0, t, M2):
             - M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
             + (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
 
+<<<<<<< HEAD
     f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+=======
+    #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
+    f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
+>>>>>>> 537cdff41eb60754dbf651d85f25dc9696835764
     # Leonardo's suggestion:
     # It should wor because rint threshold to 1. values >= to .5 and to 0. values <.5
     #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
@@ -546,7 +556,11 @@ start = time.time()
 intervention_dates = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
 intervention_dates = [5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
 #intervention_dates = [5, 40, 100]
+<<<<<<< HEAD
 #intervention_dates = [40, 100]
+=======
+intervention_dates = [40, 100]
+>>>>>>> 537cdff41eb60754dbf651d85f25dc9696835764
 
 #M = M*0.5 ## it seems it doesn not make  any effect here!!!
 M2 = M * 0.0
@@ -594,7 +608,8 @@ for date in intervention_dates: # from 5, 10, 20, ... 150
     ND_previous = date
     ############################
 
-    TS=.10           # time step
+    #TS=.10           # time step
+    TS=1.0           # time step
     t_start_previous = 0.0; t_end_previous = ND_previous; t_inc = TS
     t_range_previous = np.arange(t_start_previous, t_end_previous, t_inc)
     t_range = np.arange(0.0, ND, t_inc)
@@ -626,7 +641,7 @@ for date in intervention_dates: # from 5, 10, 20, ... 150
     #MAP = 'RdYlBu'
     cmap = pl.get_cmap(MAP)
     color = [cmap(i) for i in np.linspace(0, 1, len(interventions)+1)]
-    #pl.figure(figsize=(15,5))
+    pl.figure(figsize=(15,5))
     counter = 1
     # matrix solution, for each intervention date there are len(interventions)
     # levels:
@@ -667,14 +682,14 @@ for date in intervention_dates: # from 5, 10, 20, ... 150
         print("shape of 'Total_Inf_total' =", Total_Inf_total.shape)
 
 
-        ## Plotting both total PRE and POST INTERVENTION with different colors
-        #pl.title('Model curve of PRE (red) + POST (color gradient) INTERVENTION -aggregated infecteds- day %d' %ND_previous, fontsize=20)
-        #pl.plot(t_range_previous, Total_Inf_0, linewidth=7, alpha=1.0, color="Crimson")
-        ##if interv.all() == M.all():
-        ##    pl.plot(t_range_post, Total_Inf_1, linewidth=4, alpha=.7, color="black")
-        #pl.plot(t_range_post, Total_Inf_1, linewidth=4, alpha=.7, color=color[counter])
-        #pl.xlabel('time (days)', fontsize=20)
-        #pl.legend(loc=1)
+        # Plotting both total PRE and POST INTERVENTION with different colors
+        pl.title('Model curve of PRE (red) + POST (color gradient) INTERVENTION -aggregated infecteds- day %d' %ND_previous, fontsize=20)
+        pl.plot(t_range_previous, Total_Inf_0, linewidth=7, alpha=1.0, color="Crimson")
+        #if interv.all() == M.all():
+        #    pl.plot(t_range_post, Total_Inf_1, linewidth=4, alpha=.7, color="black")
+        pl.plot(t_range_post, Total_Inf_1, linewidth=4, alpha=.7, color=color[counter])
+        pl.xlabel('time (days)', fontsize=20)
+        pl.legend(loc=1)
 
         counter = counter + 1
 
