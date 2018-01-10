@@ -1,15 +1,11 @@
 #!/usr/bin/env python
 # SEIR without demography (no vital dynamics)
 # VERSION NOTEBOOK
-##################################################################
-#    This  porgrame started as the PYTHON version of program 2.6 #
-# from page 41 of                                                #
-# "Modeling Infectious Disease in humans and animals"            #
-# by Keeling & Rohani                                            #
-#	                                							 #
-# It is the SEIR epidemic with no births nor deaths.             #l
-# Note we no-longer explicitly model the recovered class. 	     #
-##################################################################
+########################################################################
+# This is the SEIR epidemic with no births nor deaths.                 #
+# coupled to s network model tath represents mobility of human hosts   #
+# within a geographical domain (the Caribbean)                         #
+########################################################################
 ########################################################################
 # Modified by carlos j dommar - carlos.dommar@gmail.com                #
 # to adapt it to a simple 2-patch model                                #
@@ -62,14 +58,14 @@
 #       d) Random network with the same number of nodes and links of   #
 #        the obeserved one.                                            #
 #                                                                      #
-#   version 0.6.1:
-#       a) Cleaning up existing code and refactoring funcions
+#   version 0.6.1:                                                     #
+#       a) Cleaning up existing code and refactoring funcions          #
 #                                                                      #
 ########################################################################
 
 ########################################################################
 
-__author__ = """carlos j dommar ~ carlos.dommar_at_ ic3.cat"""
+__author__ = """carlos j dommar ~ carlos.dommar_at_isglobal.org"""
 # Preambule:
 import os
 import scipy.integrate as spi

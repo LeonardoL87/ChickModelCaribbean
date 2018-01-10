@@ -6,6 +6,9 @@
 # INTERVENTION SCRIPTS                                                 #
 # INTERVENTION SCRIPTS                                                 #
 # INTERVENTION SCRIPTS                                                 #
+# moddifications developed by Leonardo Lopez 
+# (leonardorafael.lopez@isglobal.org)  to impose an artificial 
+# threshold  on the ODEs solution are incorporated in this scripts 
 ########################################################################
 # This is the SEIR epidemic with no births nor deaths.                 #
 # coupled to s network model tath represents mobility of human hosts   #
@@ -79,7 +82,7 @@ import pandas as pd
 import networkx as nx
 import seaborn
 import time
-__author__ = """carlos j dommar ~ carlos.dommar _at_ gmail.com"""
+__author__ = """carlos j dommar ~ carlos.dommar _at_isglobal.org"""
 
 
 # Keep track of the tota ime of execution
@@ -90,21 +93,17 @@ start = time.time()
 #############################################
 # all airports in the openflights.org dataset-
 ## use for the Lenovo laptop:
-# airports = pd.read_csv('./data/airports.csv')
+# airports = pd.read_csv('/home/carlos/projects/fpol/data/airports.csv')
 
 ## use for Ingold:
 airports = pd.read_csv('./data/airports.csv')
-<<<<<<< HEAD
-
-=======
->>>>>>> 537cdff41eb60754dbf651d85f25dc9696835764
 # Load the outcome from the albert's script 'connection_matrix.py' (report path)
 ## use the following path for the Lenovo laptop:
 #my_airports_df = \
-#    pd.read_csv('./data/island_connections_caribbean_3.csv')
+#    pd.read_csv('/home/carlos/projects/chik-caribbean/non-in-repo/data00/island_connections_caribbean_3.csv')
 ## use the following pathe for Ingold:
 my_airports_df = \
-    pd.read_csv('./data/island_connections_caribbean_3.csv')
+    pd.read_csv('~/projects/chik-caribbean/non-in-repo/data00/island_connections_caribbean_3.csv')
 # cleaning off some unnecesary header off the dataframe
 my_airports_df = my_airports_df.drop('Unnamed: 0',1)
 my_airports_df.index = my_airports_df.columns
@@ -506,6 +505,11 @@ def diff_eqs(Y0, t, M):
     R = Y0[3:leap+3:epi_classes]
     N = Y0[4:leap+4:epi_classes]
 
+    ## lines introduced by leo:
+    #for i in range(0,len(I)):
+    #            if I[i] > 1:
+
+
     dS = -beta*S*I/(S+E+I+R)
     dE = beta*S*I/(S+E+I+R) - sigma*E
     dI = sigma*E - gamma*I
@@ -515,21 +519,39 @@ def diff_eqs(Y0, t, M):
     # Update with migration rates:
     # For all dS's:
     for i in range(0,len(dS)):
+        S_plus = (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
+        S_minus = M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])
+        np.rint(S_plus)
+
         dS[i] = dS[i] \
-            - M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
+                - S_minus \
+                + S_plus
+            #- M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
 
     # For all dE's:
     for i in range(0,len(dE)):
+        E_plus = (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
+        E_minus = M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
+        # threshold to simulate discretization:
+        np.rint(E_plus)
+
         dE[i] = dE[i] \
-            - M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
+                - E_minus \
+                + E_plus
+            #- M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
 
     # For all dI's:
     for i in range(0,len(dI)):
+        I_plus = (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
+        I_minus = M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])
+        np.rint(I_plus)
+
         dI[i] = dI[i] \
-            - M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
+                - I_minus + I_plus
+            #- M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
 
     # For all dR's
     for i in range(0,len(dR)):
@@ -564,8 +586,12 @@ def diff_eqs_2(Y0, t, M):
     I = Y0[2:leap+2:epi_classes]
     R = Y0[3:leap+3:epi_classes]
     N = Y0[4:leap+4:epi_classes]
-
+    ## lines introduced by leo:
+    #for i in range(0,len(I)):
+    #            if I[i] > 1:
     #print("sigma from inside the ode solver B: ", sigma)
+
+
     dS = -beta*S*I/(S+E+I+R)
     dE = beta*S*I/(S+E+I+R) - sigma*E
     dI = sigma*E - gamma*I
@@ -574,39 +600,51 @@ def diff_eqs_2(Y0, t, M):
     # Update with migration rates:
     # For all dS's:
     for i in range(0,len(dS)):
+        S_plus = (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
+        S_minus = M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])
+        np.rint(S_plus)
+
         dS[i] = dS[i] \
-            - M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
+                - S_minus\
+                + S_plus
+            #- M2[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M2[:,i]))*S/(S+E+I+R)).sum()
 
     # For all dE's:
     for i in range(0,len(dE)):
+        E_plus = (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
+        E_minus = M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
+        # threshold to simulate discretization:
+        np.rint(E_plus)
+
         dE[i] = dE[i] \
-            - M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
+                - E_minus \
+                + E_plus
+            #- M2[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M2[:,i]))*E/(S+E+I+R)).sum()
 
     # For all dI's:
     for i in range(0,len(dI)):
+        I_plus = (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
+        I_minus = M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])
+        np.rint(I_plus)
+
         dI[i] = dI[i] \
-            - M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
+                - I_minus + I_plus
+           # - M2[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
+           # + (np.squeeze(np.asarray(M2[:,i]))*I/(S+E+I+R)).sum()
 
     # For all dR's
     for i in range(0,len(dR)):
+        R_minus = M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])
+        R_plus = (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
         dR[i] = dR[i] \
-            - M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
-            + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
+                - R_minus + R_plus
+            #- M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
-=======
-    #f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
-    f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
->>>>>>> 537cdff41eb60754dbf651d85f25dc9696835764
-=======
     f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
     #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
->>>>>>> f8978edde17b933d299e2ec1c0358a90613b694b
     # Leonardo's suggestion:
     # It should wor because rint threshold to 1. values >= to .5 and to 0. values <.5
     #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
@@ -631,14 +669,10 @@ def diff_eqs_2(Y0, t, M):
 start = time.time()
 
 # I run over a vector of differnte intervention dates (times)
-intervention_dates = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
-intervention_dates = [5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
+intervention_dates = [1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
+#intervention_dates = [5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
 #intervention_dates = [5, 40, 100]
-<<<<<<< HEAD
 #intervention_dates = [40, 100]
-=======
-intervention_dates = [40, 100]
->>>>>>> 537cdff41eb60754dbf651d85f25dc9696835764
 
 #M = M*0.5 ## it seems it doesn not make  any effect here!!!
 #M2 = M * 0.0
