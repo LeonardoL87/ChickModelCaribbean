@@ -75,6 +75,7 @@
 
 __author__ = """carlos j dommar ~ carlos.dommar_at_isglobal.org"""
 # Preambule:
+# Check the versions of libraries
 import scipy.integrate as spi
 import numpy as np
 import pylab as pl
@@ -82,6 +83,25 @@ import pandas as pd
 import networkx as nx
 import seaborn
 import time
+
+ 
+ # Python version
+ import sys
+ print('Python: {}'.format(sys.version))
+ # scipy
+ import scipy
+ print('scipy: {}'.format(scipy.__version__))
+ # numpy
+ print('numpy: {}'.format(np.__version__))
+ # matplotlib
+ import matplotlib
+ print('matplotlib: {}'.format(matplotlib.__version__))
+ # pandas
+ print('pandas: {}'.format(pd.__version__))
+ # scikit-learn
+ import sklearn
+ print('sklearn: {}'.format(sklearn.__version__))
+
 __author__ = """carlos j dommar ~ carlos.dommar _at_isglobal.org"""
 
 
