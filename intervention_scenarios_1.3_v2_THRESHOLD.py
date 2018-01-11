@@ -1,12 +1,12 @@
-
-
 #!/usr/bin/env python
 # SEIR without demography (no vital dynamics)
+# by Carlos J. Dommar (carlos_dot_dommar_at_ gmail_dot_com)
+#                     (carlos_dot_dommar_at_ isglobal_dot_org)
 ########################################################################
 # INTERVENTION SCRIPTS                                                 #
 # INTERVENTION SCRIPTS                                                 #
 # INTERVENTION SCRIPTS                                                 #
-# moddifications developed by Leonardo Lopez 
+# modifications developed by Leonardo Lopez 
 # (leonardorafael.lopez@isglobal.org)  to impose an artificial 
 # threshold  on the ODEs solution are incorporated in this scripts 
 ########################################################################
@@ -630,14 +630,16 @@ def diff_eqs_2(Y0, t, M):
         np.rint(I_plus)
 
         dI[i] = dI[i] \
-                - I_minus + I_plus
-           # - M2[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
-           # + (np.squeeze(np.asarray(M2[:,i]))*I/(S+E+I+R)).sum()
+                - I_minus \
+                + I_plus
+            #- M2[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
+            #+ (np.squeeze(np.asarray(M2[:,i]))*I/(S+E+I+R)).sum()
 
     # For all dR's
     for i in range(0,len(dR)):
-        R_minus = M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])
         R_plus = (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
+        R_minus = M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])
+        np.rint(I_plus)
         dR[i] = dR[i] \
                 - R_minus + R_plus
             #- M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
@@ -669,13 +671,13 @@ def diff_eqs_2(Y0, t, M):
 start = time.time()
 
 # I run over a vector of differnte intervention dates (times)
-intervention_dates = [1, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
-#intervention_dates = [5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
-#intervention_dates = [5, 40, 100]
-#intervention_dates = [40, 100]
+intervention_dates = [5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
+intervention_dates = [1, 5, 10, 20, 40, 60, 80, 100, 120, 140, 150]
+#intervention_dates = [1, 5, 40, 100]
+#intervention_dates = [1, 40, 100]
 
 #M = M*0.5 ## it seems it doesn not make  any effect here!!!
-#M2 = M * 0.0
+M2 = M * 0.0
 interventions = [M, M*.9, M*.8, M*.7, M*.6,  M*.5, M*.4, M*.3, M*.2, M*.1, M*.0]
 
 solution_list = [] # each element represents an intervention time from the list
@@ -761,7 +763,7 @@ for date in intervention_dates: # from 5, 10, 20, ... 150
 
     interv_num = 0
     for interv in interventions: # descending from 1.0,0.9,...,0.0
-        YSOL_1 = spi.odeint(diff_eqs_2, Y0_post, t_range_post, (interv,)) # YSOL_0 is the solution withou any modification
+        YSOL_1 = spi.odeint(diff_eqs_2, Y0_post, t_range_post, (interv,)) # YSOL_0 is the solution without any modification
         #YSOL_1 = YSOL_1*.15 # only 15% are observed or recorded
 
         Total_Inf_0 = np.zeros(len(t_range_previous))
