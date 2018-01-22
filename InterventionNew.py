@@ -519,31 +519,7 @@ def diff_eqs(Y0, t, M):
     dE = beta*S*I/(S+E+I+R) - sigma*E
     dI = sigma*E - gamma*I
     dR = gamma*I
-    #print("sigma from inside the ode solver: ", sigma)
-#    S=np.rint(S)
-#    E=np.rint(E)
-#    I=np.rint(I)
-#    R=np.rint(R)
-
     # Update with migration rates:
-    # For all dS's:
-#    for i in range(0,len(dS)):
-#        S_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(S)/(S+E+I+R)).sum()
-#        S_minus = M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])
-#        dS[i] = dS[i]- S_minus + S_plus
-#    for i in range(0,len(dE)):
-#        E_minus = M[i,:].sum()*np.rint(E[i])/(S[i]+E[i]+I[i]+R[i])
-#        E_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(E)/(S+E+I+R)).sum()
-#        dE[i] = dE[i] - E_minus + E_plus
-#    # For all dI's:
-#    for i in range(0,len(dI)):
-#        I_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(I)/(S+E+I+R)).sum()
-#        I_minus = M[i,:].sum()*np.rint(I[i])/(S[i]+E[i]+I[i]+R[i])
-#        dI[i] = dI[i] - I_minus + I_plus
-#     # For all dR's
-#    for i in range(0,len(dR)):
-#        dR[i] = dR[i]- M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i]) + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
-        
     for i in range(0,len(dS)):
         dS[i] = dS[i] \
             - M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
@@ -607,19 +583,11 @@ def diff_eqs_2(Y0, t, M):
     for i in range(0,len(dS)):
         S_plus = (np.squeeze(np.asarray(M[:,i]))*S/(S+E+I+R)).sum()
         S_minus = M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])
-#        S_minus = M[i,:].sum()*np.rint(S[i])/((S[i]+E[i]+I[i]+R[i]))
-#        S_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(S)/(S+E+I+R)).sum()
-#        S_minus = M[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])
-#        np.rint(S_plus)
         dS[i] = dS[i]- S_minus + S_plus
 #        np.rint(dS[i])
     for i in range(0,len(dE)):
         E_plus = (np.squeeze(np.asarray(M[:,i]))*E/(S+E+I+R)).sum()
         E_minus = M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])
-#        E_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(E)/(S+np.rint(E)+I+R)).sum()
-#        E_minus = M[i,:].sum()*np.rint(E[i])/(S[i]+E[i]+I[i]+R[i])
-#        E_minus = M[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])
-#        E_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(E)/(S+E+I+R)).sum()
         # threshold to simulate discretization:
         dE[i] = dE[i] - E_minus + E_plus
 #        dE[i]= np.rint(dE[i])
@@ -627,52 +595,13 @@ def diff_eqs_2(Y0, t, M):
     for i in range(0,len(dI)):
         I_plus = (np.squeeze(np.asarray(M[:,i]))*I/(S+E+I+R)).sum()
         I_minus = M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])
-#        I_minus = M[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])
-#        I_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(I)/(S+E+I+R)).sum()
-#        I_plus = (np.squeeze(np.asarray(M[:,i]))*np.rint(I)/(S+E+np.rint(I)+R)).sum()
-#        I_minus = M[i,:].sum()*np.rint(I[i])/(S[i]+E[i]+I[i]+R[i])
         dI[i] = dI[i] - I_minus + I_plus
           
     # For all dR's
     for i in range(0,len(dR)):
         dR[i] = dR[i]- M[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i]) + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
-
-#        dR[i] = dR[i]- M[i,:].sum()*np.rint(R[i])=/(S[i]+E[i]+I[i]+np.rint(R[i])) + (np.squeeze(np.asarray(M[:,i]))*R/(S+E+I+R)).sum()
-
-    # Update with migration rates:
-    # For all dS's:
-#    for i in range(0,len(dS)):
-#        dS[i] = dS[i] \
-#            - M2[i,:].sum()*S[i]/(S[i]+E[i]+I[i]+R[i])\
-#            + (np.squeeze(np.asarray(M2[:,i]))*S/(S+E+I+R)).sum()
-#
-#    # For all dE's:
-#    for i in range(0,len(dE)):
-#        dE[i] = dE[i] \
-#            - M2[i,:].sum()*E[i]/(S[i]+E[i]+I[i]+R[i])\
-#            + (np.squeeze(np.asarray(M2[:,i]))*E/(S+E+I+R)).sum()
-#
-#    # For all dI's:
-#    for i in range(0,len(dI)):
-#        dI[i] = dI[i] \
-#            - M2[i,:].sum()*I[i]/(S[i]+E[i]+I[i]+R[i])\
-#            + (np.squeeze(np.asarray(M2[:,i]))*I/(S+E+I+R)).sum()
-#
-#    # For all dR's
-#    for i in range(0,len(dR)):
-#        dR[i] = dR[i] \
-#            - M2[i,:].sum()*R[i]/(S[i]+E[i]+I[i]+R[i])\
-#            + (np.squeeze(np.asarray(M2[:,i]))*R/(S+E+I+R)).sum()
-
+ 
     f = [dS, dE, dI, dR, (dS+dE+dI+dR)]
-#    f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
-    # Leonardo's suggestion:
-    # It should wor because rint threshold to 1. values >= to .5 and to 0. values <.5
-    #np.rint(f = [dS, dE, dI, dR, (dS+dE+dI+dR)])
-    #f = np.rint([dS, dE, dI, dR, (dS+dE+dI+dR)])
-
-
-
     # put f in the right order:
     f_temp = list()
     for p in range(0, patches):
@@ -685,15 +614,16 @@ def diff_eqs_2(Y0, t, M):
  
 ###############################################################################
 ###############################################################################
+#Calculate the area under the curve using the Simpson's rule (quadratic polynomials)
 
 def Areas(solution_list,intervention_dates,niveles_intervencion):
     from scipy.integrate import simps
     f = open('AreasNuevas.txt','a')
-    for i in range(0,len(solution_list)):
+    for i in range(0,len(solution_list)):#For each intervention day
         print("Día de intervención ",intervention_dates[i])
         f.write('Día Intervención %i\n'%intervention_dates[i])
-        norma=simps(solution_list[i][:,0])
-        for j in range(0,len(solution_list[0][0])):
+        norma=simps(solution_list[i][:,0]) #compute the norm, this is de area under the curve without intervention (M*1) the firts element
+        for j in range(0,len(solution_list[0][0])): #then I calculate the area under the rest of the curves and I save them into the file f
             curva=solution_list[i][:,j]
             area=simps(curva)
             print ('Nivel de intervención: M*%f -Area bajo la curva: %f - Area normalizada: %f' %(niveles_intervencion[j],area,area/norma))
@@ -703,8 +633,6 @@ def Areas(solution_list,intervention_dates,niveles_intervencion):
 ###############################################################################
 
 start = time.time()
-#from scipy.integrate import simps
-#area=simps(Total_Inf)
 # I run over a vector of differnte intervention dates (times)
 #intervention_dates = [5,7,10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
 #intervention_dates = [160, 170, 180, 190, 200, 250, 260, 300]
@@ -720,8 +648,6 @@ niveles_intervencion=[1.,.8,.6,.4,.3,.2,.1,.0]
 interventions=[]
 for i in range(0,len(niveles_intervencion)):
     interventions.append(M*niveles_intervencion[i])
-#interventions = [M, M*.9, M*.6,  M*.3, M*.1, M*.0]
-#interventions = [M, M*.9, M*.6,  M*.3, M*.1, M*.0]
 
 solution_list = [] # each element represents an intervention time from the list
                    # 'interventions'. Within each elemet there is a pd.Dataframe
