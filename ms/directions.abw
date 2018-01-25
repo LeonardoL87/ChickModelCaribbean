@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:svg="http://www.w3.org/2000/svg" xid-max="15" xmlns:dc="http://purl.org/dc/elements/1.1/" styles="unlocked" fileformat="1.1" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.9.1" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:es-ES; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="abiword.date_last_changed">Tue Jul  4 02:34:21 2017
+</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="dc.creator">carlos</m>
+<m key="dc.date">Tue Jul  4 02:34:21 2017
+</m>
+<m key="dc.format">application/x-abiword</m>
+</metadata>
+<rdf>
+</rdf>
+<history version="1" edit-time="351984" last-saved="1499128461" uid="ff1eac5a-5d1c-11e7-9f44-a93c182491d1">
+<version id="1" started="1499128461" uid="85b19666-6050-11e7-9f44-a93c182491d1" auto="0" top-xid="15"/>
+</history>
+<styles>
+<s type="P" name="Normal" followedby="Current Settings" props="font-family:Times New Roman; margin-top:0pt; color:000000; margin-left:0pt; text-position:normal; widows:2; font-style:normal; text-indent:0in; font-variant:normal; font-weight:normal; margin-right:0pt; font-size:12pt; text-decoration:none; margin-bottom:0pt; line-height:1.0; bgcolor:transparent; text-align:left; font-stretch:normal"/>
+</styles>
+<pagesize pagetype="A4" orientation="portrait" width="210.000000" height="297.000000" units="mm" page-scale="1.000000"/>
+<section xid="14" props="page-margin-footer:0.5000in; page-margin-header:0.5000in; page-margin-right:1.0000in; page-margin-left:1.0000in; page-margin-top:1.0000in; page-margin-bottom:1.0000in">
+<p style="Normal" xid="15"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Carlos,<br/></c></p>
+<p style="Normal" xid="1" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Las figuras están ya perfectas, no las toques más.<br/></c></p>
+<p style="Normal" xid="2" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Entonces agárrate el draft y también imprímete algunos artículos de Science, Nature o NatComs y verás la manera de presentar todo, la intro, cómo se introduce una parte (no toda) de ls métodos y datos (el resto va al SI) y cómo se afrontan la discusión de los resultados. Fíjate que un aspecto importante es en la introducción </c><c props="font-size:12.800000pt; font-weight:bold; text-transform:none; color:#222222; font-style:normal">destacar en qué punto respecto de lo que se presenta el estudio, se encuentra el conocimiento científico del tema y cuáles son los gaps o incertidumbres actuales</c><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal"> (con referencias a la bibliografía más actual sobre el tema). </c></p>
+<p style="Normal" xid="10" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal"></c></p>
+<p style="Normal" xid="11" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal"></c><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Entonces, </c><c props="font-size:12.800000pt; font-weight:bold; text-transform:none; color:#222222; font-style:normal">al final de la intro y antes de los métodos se enumera succintamente lo que se hace en el artículo al respecto de esos gaps.</c><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal"> </c></p>
+<p style="Normal" xid="12" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal"></c></p>
+<p style="Normal" xid="13" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal"></c><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Luego </c><c props="font-size:12.800000pt; font-weight:bold; text-transform:none; color:#222222; font-style:normal">en la discusión se toman los diferentes puntos de interés y gaps y se discuten nuestros resultados en ese marco, remarcando en lo que permiten avanzar el campo de conocimineto. Un extracto de lo más destacado de esto mismo se incluye en el abstract también</c><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">.<br/></c></p>
+<p style="Normal" xid="3" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Esto es lo más importante a perfilar ahora y es en lo que te debes de centrar. Yo hasta el miércoles incluído es como que no estoy porqué tengo que presentar mucha documentación para la convocatoria de la SGR por un lado y luego por otro, para justificar la que teníamos en IC3. Entonces no voy a poder hablar con nadie de trabajo.<br/></c></p>
+<p style="Normal" xid="4" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Creo que puedes agarrarte estos tres días para completar lo que te digo del draft y mandármelo el miércoles tarde, yo lo tomaría como prioridad el jueves y dedicaría el día entero a pulirlo.<br/></c></p>
+<p style="Normal" xid="5" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Dime si te parece bien.<br/></c></p>
+<p style="Normal" xid="6" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Saludos,<br/></c></p>
+<p style="Normal" xid="7" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c props="font-weight:normal; color:#222222; text-transform:none; font-size:12.800000pt; font-style:normal">Xavi</c></p>
+<p style="Normal" xid="8" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c></c></p>
+<p style="Normal" xid="9" props="text-align:start; text-indent:0px; orphans:2; widows:2"><c></c></p>
+</section>
+</abiword>
